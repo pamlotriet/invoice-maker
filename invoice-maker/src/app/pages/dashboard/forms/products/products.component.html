@@ -1,0 +1,68 @@
+<label>Product Info</label>
+<form [formGroup]="form">
+  @for(row of rows.controls; track row; let idx = $index){
+  <div class="flex flex-row mt-8">
+    <div class="grid grid-cols-5 w-screen gap-6 items-center">
+      <div class="cols-span-1">
+        <p-floatlabel variant="on">
+          <input
+            pInputText
+            id="on_label"
+            autocomplete="off"
+            class="w-full"
+            [formControl]="$any(row.get('description'))"
+          />
+          <label for="on_label">Description</label>
+        </p-floatlabel>
+      </div>
+      <div class="cols-span-1">
+        <p-floatlabel variant="on">
+          <p-inputnumber
+            inputId="on_label"
+            mode="currency"
+            currency="ZAR"
+            class="w-full"
+            [formControl]="$any(row.get('price'))"
+          />
+          <label for="on_label">Price</label>
+        </p-floatlabel>
+      </div>
+      <div class="cols-span-1">
+        <p-floatlabel variant="on">
+          <p-inputnumber
+            class="w-full"
+            [showButtons]="true"
+            [min]="0"
+            [max]="100"
+            inputId="on_label"
+            [formControl]="$any(row.get('quantity'))"
+          ></p-inputnumber>
+          <label for="on_label">Qty</label>
+        </p-floatlabel>
+      </div>
+      <div class="cols-span-1">
+        <p-floatlabel variant="on">
+          <p-inputnumber
+            class="w-full"
+            inputId="on_label"
+            mode="currency"
+            currency="ZAR"
+            [formControl]="$any(row.get('amount'))"
+          ></p-inputnumber>
+          <label for="on_label">Amount</label>
+        </p-floatlabel>
+      </div>
+      <div class="cols-span-1">
+        @if(idx === rows.length - 1){
+        <i class="pi pi-plus-circle cursor-pointer" (click)="addRow()"></i>
+        } @if(rows.length > 1){
+        <i
+          class="pi pi-minus-circle cursor-pointer ml-4"
+          (click)="removeRow(idx)"
+        ></i>
+        }
+      </div>
+    </div>
+  </div>
+  }
+</form>
