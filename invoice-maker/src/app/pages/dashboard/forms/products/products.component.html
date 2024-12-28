@@ -1,8 +1,8 @@
 <label>Product Info</label>
 <form [formGroup]="form">
   @for(row of rows.controls; track row; let idx = $index){
-  <div class="flex flex-row mt-8">
-    <div class="grid grid-cols-5 w-screen gap-6 items-center">
+  <div class="flex flex-row">
+    <div class="grid grid-cols-5 w-full mt-4 gap-6 items-center">
       <div class="cols-span-1">
         <p-floatlabel variant="on">
           <input

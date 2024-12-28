@@ -14,11 +14,13 @@ import { FileUploadModule } from 'primeng/fileupload';
   imports: [
     ButtonModule,
     InputTextModule,
+    FloatLabel,
     OwnerInfoComponent,
     ClientInfoComponent,
     ProductsComponent,
     DatePickerModule,
     FileUploadModule,
+    ButtonModule,
   ],
   templateUrl: './dashboard.component.html',
 })
