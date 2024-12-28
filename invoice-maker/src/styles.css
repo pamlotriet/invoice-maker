@@ -1,4 +1,5 @@
 @import "primeicons/primeicons.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,10 +11,17 @@
 
 body {
   background-color: var(--off-white);
+  @apply font-montserrat;
 }
 
 button {
   @apply w-full;
 }
 
+.p-inputtext {
+  @apply text-sm font-light;
+}
 
+label {
+  @apply text-sm;
+}
