@@ -1,4 +1,13 @@
-<label>Product Info</label>
+<div class="grid grid-cols-5 gap-6">
+  <div class="col-span-1 col-start-1">
+    <label>Product Info</label>
+  </div>
+  <div class="col-span-1 col-start-4">
+    <label class="text-lg"
+      >Total {{ total | currency: "ZAR " : "symbol" }}</label
+    >
+  </div>
+</div>
 <form [formGroup]="form">
   @for (row of rows.controls; track row; let idx = $index) {
     <div class="flex flex-row">
@@ -43,6 +52,7 @@
         <div class="cols-span-1">
           <p-floatlabel variant="on">
             <p-inputnumber
+              readonly="true"
               class="w-full"
               inputId="on_label"
               mode="currency"

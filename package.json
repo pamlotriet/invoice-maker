@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@primeng/themes": "^19.0.2",
-    "primeng": "^19.0.2",
-    "tailwindcss-primeui": "^0.3.4"
-  }
-}

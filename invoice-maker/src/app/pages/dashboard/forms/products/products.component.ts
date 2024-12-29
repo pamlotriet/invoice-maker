@@ -9,6 +9,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
@@ -19,55 +20,59 @@ import { InputNumberModule } from 'primeng/inputnumber';
     FloatLabel,
     ReactiveFormsModule,
     InputNumberModule,
+    CommonModule,
   ],
   templateUrl: './products.component.html',
 })
 export class ProductsComponent {
   form: FormGroup;
-
+  total: number = 0.0;
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      rows: this.fb.array([this.createRow()]), // Initialize with one row
+      rows: this.fb.array([this.createRow()]),
     });
     console.log(this.form);
   }
 
-  // Create a new row
   createRow(): FormGroup {
     const row = this.fb.group({
       description: this.fb.control(''),
       price: this.fb.control(0),
       quantity: this.fb.control(0),
-      amount: this.fb.control({ value: 0, disabled: true }),
+      amount: this.fb.control(0),
     });
 
-    // Automatically calculate the amount when price or quantity changes
     row.get('price')?.valueChanges.subscribe(() => this.updateAmount(row));
     row.get('quantity')?.valueChanges.subscribe(() => this.updateAmount(row));
 
     return row;
   }
 
-  // Access rows in the FormArray
   get rows(): FormArray {
     return this.form.get('rows') as FormArray;
   }
 
-  // Add a new row
   addRow(): void {
     this.rows.push(this.createRow());
   }
 
-  // Remove a row by index
   removeRow(index: number): void {
     this.rows.removeAt(index);
   }
 
-  // Calculate the amount (price * quantity)
   private updateAmount(row: FormGroup): void {
     const price = row.get('price')?.value || 0;
     const quantity = row.get('quantity')?.value || 0;
     const amount = price * quantity;
     row.get('amount')?.setValue(amount, { emitEvent: false });
+    this.updateTotal();
+  }
+
+  private updateTotal(): void {
+    //calculates the sum of a value in an array
+    this.total = this.rows.controls.reduce((sum: any, row: any) => {
+      const amount = row.get('amount')?.value || 0;
+      return sum + amount;
+    }, 0);
   }
 }
