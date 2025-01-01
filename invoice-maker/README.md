@@ -21,6 +21,7 @@ Invoice Maker is a streamlined Angular-based web application designed to simplif
 
 - **Frontend**: Angular with PrimeNG for UI components.
 - **PDF Generation**: jsPDF and jsPDF-AutoTable.
+- **Styling**: Tailwind.
 
 ## Installation
 
