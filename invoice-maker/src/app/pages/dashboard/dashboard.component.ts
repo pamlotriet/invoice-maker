@@ -1,10 +1,9 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabel } from 'primeng/floatlabel';
-import { OwnerInfoComponent } from './forms/owner-info/owner-info.component';
-import { ClientInfoComponent } from './forms/client-info/client-info.component';
-import { ProductsComponent } from './forms/products/products.component';
+import { OwnerInfoComponent } from '@pages/dashboard/forms/owner-info/owner-info.component';
+import { ClientInfoComponent } from '@pages/dashboard/forms//client-info/client-info.component';
+import { ProductsComponent } from '@pages/dashboard/forms//products/products.component';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FileUploadModule } from 'primeng/fileupload';
 import {
@@ -13,7 +12,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { InvoiceService } from '@app/shared/services/pdf-service.service';
+import { InvoiceService } from '@services/pdf-service.service';
 import { DatePipe } from '@angular/common';
 import { BankingDetailsComponent } from './forms/banking-details/banking-details.component';
 
@@ -22,7 +21,6 @@ import { BankingDetailsComponent } from './forms/banking-details/banking-details
   standalone: true,
   imports: [
     ButtonModule,
-    InputTextModule,
     FloatLabel,
     OwnerInfoComponent,
     ClientInfoComponent,
@@ -101,10 +99,10 @@ export class DashboardComponent {
     reader.onload = () => {
       this.uploadedLogoBase64 = reader.result as string;
       this.parentForm.patchValue({
-        logo: this.uploadedLogoBase64, // Patch the Base64 string into the form
+        logo: this.uploadedLogoBase64,
       });
     };
 
-    reader.readAsDataURL(file); // Convert to Base64
+    reader.readAsDataURL(file);
   }
 }

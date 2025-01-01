@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputComponent } from "../../../../shared/components/input/input.component";
+import { InputComponent } from "@components/input/input.component";
 
 @Component({
   selector: 'app-client-info',

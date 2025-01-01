@@ -9,8 +9,8 @@ import {
 } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CommonModule } from '@angular/common';
-import { InputComponent } from '../../../../shared/components/input/input.component';
-import { InputNumberComponent } from '@app/shared/components/input-number/input-number.component';
+import { InputComponent } from '@components/input/input.component';
+import { InputNumberComponent } from '@components/input-number/input-number.component';
 
 @Component({
   selector: 'app-products',
@@ -71,7 +71,6 @@ export class ProductsComponent {
   }
 
   private updateTotal(): void {
-    //calculates the sum of a value in an array
     this.total = this.rows.controls.reduce((sum: any, row: any) => {
       const amount = row.get('amount')?.value || 0;
       return sum + amount;

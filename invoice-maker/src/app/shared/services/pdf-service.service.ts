@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable'; // Import the plugin
+import autoTable from 'jspdf-autotable';
 
 @Injectable({
   providedIn: 'root',
@@ -12,32 +12,24 @@ export class InvoiceService {
     const doc = new jsPDF();
     const invoiceNumber = this.generateInvoiceNumber();
 
-    // Add logo if provided
     if (data.logo) {
-      doc.addImage(data.logo, 'PNG', 10, 10, 50, 20); // Logo at (10, 10), width: 50, height: 20
+      doc.addImage(data.logo, 'PNG', 10, 10, 50, 20);
     }
 
-    // Add title, adjusted to account for the logo
     doc.setFontSize(36);
-    doc.text('Invoice', 105, 40, { align: 'center' }); // Adjusted Y position to avoid overlap with the logo
-
-    // Add client and owner details
+    doc.text('Invoice', 105, 40, { align: 'center' });
     doc.setFontSize(8);
     doc.text(`${data.ownerInfo.name || 'N/A'}`, 10, 60);
     doc.text(`Name: ${data.clientInfo.name || 'N/A'}`, 110, 60);
-
     doc.text(`${data.ownerInfo.surname || 'N/A'}`, 10, 65);
     doc.text(`Surname: ${data.clientInfo.surname || 'N/A'}`, 110, 65);
-
     doc.text(`${data.ownerInfo.number || 'N/A'}`, 10, 70);
     doc.text(`Number: ${data.clientInfo.number || 'N/A'}`, 110, 70);
-
     doc.text(`${data.ownerInfo.email || 'N/A'}`, 10, 75);
     doc.text(`Email: ${data.clientInfo.email || 'N/A'}`, 110, 75);
     doc.text(`Invoice #: ${invoiceNumber || 'N/A'}`, 110, 80);
     doc.text(`Issue Date: ${data.dateCreated || 'N/A'}`, 110, 85);
 
-    // Add products table
     const products = data.products.rows.map((row: any) => [
       row.description,
       row.price,
@@ -52,9 +44,9 @@ export class InvoiceService {
 
     const productDetails = data.products.rows.map((row: any) => [
       row.description,
-      `R${row.price.toFixed(2)}`, // Format price with "R" prefix and 2 decimal places
+      `R${row.price.toFixed(2)}`,
       row.quantity,
-      `R${row.amount.toFixed(2)}`, // Format amount with "R" prefix and 2 decimal places
+      `R${row.amount.toFixed(2)}`,
     ]);
 
     autoTable(doc, {
@@ -72,7 +64,6 @@ export class InvoiceService {
 
     const tableEndY = doc.lastAutoTable.finalY + 10;
 
-    // Add banking details after the table
     doc.setFontSize(10);
     doc.text('Banking Details', 10, tableEndY);
     doc.setFontSize(8);
@@ -102,7 +93,6 @@ export class InvoiceService {
       tableEndY + 30,
     );
 
-    // Add footer notes
     doc.setFontSize(8);
     doc.text(
       'Please use your invoice number last 3 digits as reference.',
@@ -112,7 +102,6 @@ export class InvoiceService {
     doc.text('Proof of payment to be sent to owner email.', 10, tableEndY + 50);
     doc.text('Thank you for your business.', 10, tableEndY + 55);
 
-    // Save the PDF
     doc.save('Invoice.pdf');
   }
 

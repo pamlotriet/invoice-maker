@@ -8,8 +8,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputComponent } from '../../../../shared/components/input/input.component';
-import { DropdownComponent } from '@app/shared/components/dropdown/dropdown.component';
+import { InputComponent } from '@components/input/input.component';
+import { DropdownComponent } from '@components/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-banking-details',

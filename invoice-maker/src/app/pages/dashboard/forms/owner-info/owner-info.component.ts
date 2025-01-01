@@ -7,7 +7,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { InputComponent } from '../../../../shared/components/input/input.component';
+import { InputComponent } from '@components/input/input.component';
 
 @Component({
   selector: 'app-owner-info',
@@ -23,8 +23,7 @@ export class OwnerInfoComponent {
   ngOnInit(): void {
     this.initializeForm();
   }
-
-  // Initialize the form with default values and validators
+  
   initializeForm(): void {
     this.ownerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
