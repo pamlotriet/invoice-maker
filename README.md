@@ -10,12 +10,6 @@ Invoice Maker is a streamlined Angular-based web application designed to simplif
 - **Professional PDF Generation**:
   - Download invoices with a unique invoice number, issue date, client and owner details, and product breakdown.
   - Include a company logo (PNG, JPEG, or JPG).
-- **Watchlist Integration**:
-  - Save watched invoices for easy tracking and access.
-- **Banking Details**:
-  - Add and display owner banking information on the PDF for seamless payment handling.
-- **Responsive Design**:
-  - Optimized for desktops, tablets, and mobile devices.
 
 ## Tech Stack
 
