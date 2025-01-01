@@ -1,0 +1,25 @@
+@if (isCurrency) {
+  <p-floatlabel variant="on">
+    <p-inputnumber
+      [readonly]="isReadonly"
+      inputId="on_label"
+      mode="currency"
+      currency="ZAR"
+      class="w-full"
+      [formControl]="control"
+    />
+    <label for="on_label">{{ labelText }}</label>
+  </p-floatlabel>
+} @else {
+  <p-floatlabel variant="on">
+    <p-inputnumber
+      class="w-full"
+      [showButtons]="showButtons"
+      [min]="minValue"
+      [max]="maxValue"
+      inputId="on_label"
+      [formControl]="control"
+    ></p-inputnumber>
+    <label for="on_label">{{ labelText }}</label>
+  </p-floatlabel>
+}

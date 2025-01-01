@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabel } from 'primeng/floatlabel';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { InputComponent } from "../../../../shared/components/input/input.component";
 
 @Component({
   selector: 'app-client-info',
   standalone: true,
-  imports: [ButtonModule, InputTextModule, FloatLabel, ReactiveFormsModule],
+  imports: [ButtonModule, InputTextModule,  ReactiveFormsModule, InputComponent],
   templateUrl: './client-info.component.html',
 })
 export class ClientInfoComponent {

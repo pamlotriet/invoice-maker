@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabel } from 'primeng/floatlabel';
 import {
   FormBuilder,
   FormGroup,
@@ -10,6 +9,8 @@ import {
 } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CommonModule } from '@angular/common';
+import { InputComponent } from '../../../../shared/components/input/input.component';
+import { InputNumberComponent } from '@app/shared/components/input-number/input-number.component';
 
 @Component({
   selector: 'app-products',
@@ -17,10 +18,11 @@ import { CommonModule } from '@angular/common';
   imports: [
     ButtonModule,
     InputTextModule,
-    FloatLabel,
     ReactiveFormsModule,
     InputNumberModule,
     CommonModule,
+    InputComponent,
+    InputNumberComponent,
   ],
   templateUrl: './products.component.html',
 })

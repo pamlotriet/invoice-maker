@@ -1,0 +1,41 @@
+<label>Owner Banking Details</label>
+<form [formGroup]="bankDetailsForm">
+  <div class="flex flex-row">
+    <div class="grid grid-cols-5 w-full mt-4 gap-6">
+      <div class="cols-span-1">
+        <app-input
+          [control]="$any(bankDetailsForm.controls['accountHolder'])"
+          labelText="Account Holder"
+        ></app-input>
+      </div>
+      <div class="cols-span-1">
+        <app-dropdown
+          [control]="$any(bankDetailsForm.controls['bankName'])"
+          [options]="banks"
+          labelText="Bank"
+          placeholder="Select Bank"
+        ></app-dropdown>
+      </div>
+      <div class="cols-span-1">
+        <app-dropdown
+          [control]="$any(bankDetailsForm.controls['accountType'])"
+          [options]="accountTypes"
+          labelText="Account Type"
+          placeholder="Select Account Type"
+        ></app-dropdown>
+      </div>
+      <div class="cols-span-1">
+        <app-input
+          [control]="$any(bankDetailsForm.controls['accountNumber'])"
+          labelText="Account Number"
+        ></app-input>
+      </div>
+      <div class="cols-span-1">
+        <app-input
+          [control]="$any(bankDetailsForm.controls['branchCode'])"
+          labelText="Branch Code"
+        ></app-input>
+      </div>
+    </div>
+  </div>
+</form>

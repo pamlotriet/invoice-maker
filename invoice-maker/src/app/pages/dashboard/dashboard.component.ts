@@ -14,6 +14,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { InvoiceService } from '@app/shared/services/pdf-service.service';
+import { DatePipe } from '@angular/common';
+import { BankingDetailsComponent } from './forms/banking-details/banking-details.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,44 +31,80 @@ import { InvoiceService } from '@app/shared/services/pdf-service.service';
     FileUploadModule,
     ButtonModule,
     ReactiveFormsModule,
+    BankingDetailsComponent,
   ],
+  providers: [DatePipe],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
   @ViewChild(OwnerInfoComponent) ownerInfoComponent!: OwnerInfoComponent;
   @ViewChild(ClientInfoComponent) clientInfoComponent!: ClientInfoComponent;
   @ViewChild(ProductsComponent) productsComponent!: ProductsComponent;
+  @ViewChild(BankingDetailsComponent)
+  bankingDetailsComponent!: BankingDetailsComponent;
 
   uploadedFiles: any[] = [];
+  uploadedLogoBase64: string = '';
   parentForm!: FormGroup;
 
   invoiceService = inject(InvoiceService);
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private datePipe: DatePipe,
+  ) {
     this.createForm();
   }
 
   createForm() {
     this.parentForm = this.fb.group({
       dateCreated: new FormControl(),
+      logo: new FormControl(''),
     });
   }
 
+  getFormattedDate(): string {
+    const rawDate = this.parentForm.get('dateCreated')?.value;
+    return this.datePipe.transform(rawDate, 'dd/MM/yy') || '';
+  }
+
   onSubmit(): void {
-    debugger
     const ownerFormValue = this.ownerInfoComponent?.ownerForm.value;
     const clientFormValue = this.clientInfoComponent?.clientForm.value;
     const productsFormValue = this.productsComponent?.form.value;
+    const bankingDetailsFormValue =
+      this.bankingDetailsComponent?.bankDetailsForm.value;
+
+    const formattedDate = this.getFormattedDate();
+
+    this.parentForm.patchValue({
+      dateCreated: formattedDate,
+    });
 
     const finalFormValue = {
       ...this.parentForm.value,
       ownerInfo: ownerFormValue,
       clientInfo: clientFormValue,
       products: productsFormValue,
+      bankingDetails: bankingDetailsFormValue,
     };
 
     this.invoiceService.generateInvoice(finalFormValue);
 
     console.log('Final Form Data:', finalFormValue);
+  }
+
+  onLogoSelect(event: any): void {
+    const file = event.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.uploadedLogoBase64 = reader.result as string;
+      this.parentForm.patchValue({
+        logo: this.uploadedLogoBase64, // Patch the Base64 string into the form
+      });
+    };
+
+    reader.readAsDataURL(file); // Convert to Base64
   }
 }

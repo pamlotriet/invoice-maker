@@ -9,6 +9,7 @@
           inputId="on_label"
           showIcon
           iconDisplay="input"
+          dateFormat="dd/mm/yy"
         />
         <label for="on_label">Date Created</label>
       </p-floatlabel>
@@ -20,6 +21,7 @@
         [multiple]="false"
         accept="image/*"
         maxFileSize="1000000"
+        (onSelect)="onLogoSelect($event)"
         mode="advanced"
         [auto]="true"
       >
@@ -43,7 +45,10 @@
     <div class="mt-4 mb-4 font-bold">
       <app-client-info></app-client-info>
     </div>
-    <div class="mt-4 mb-4 font-bold flex h-fit">
+    <div class="mt-4 mb-4 font-bold">
+      <app-banking-details></app-banking-details>
+    </div>
+    <div class="mt-4 mb-4 font-bold">
       <app-products></app-products>
     </div>
     <div class="flex w-full justify-center items-center mt-8 mb-8">
