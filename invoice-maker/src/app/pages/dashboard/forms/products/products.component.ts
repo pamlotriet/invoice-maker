@@ -6,6 +6,7 @@ import {
   FormGroup,
   FormArray,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CommonModule } from '@angular/common';
@@ -33,15 +34,14 @@ export class ProductsComponent {
     this.form = this.fb.group({
       rows: this.fb.array([this.createRow()]),
     });
-    console.log(this.form);
   }
 
   createRow(): FormGroup {
     const row = this.fb.group({
-      description: this.fb.control(''),
-      price: this.fb.control(0),
-      quantity: this.fb.control(0),
-      amount: this.fb.control(0),
+      description: this.fb.control('', [Validators.required]),
+      price: this.fb.control(0, [Validators.required]),
+      quantity: this.fb.control(0, [Validators.required]),
+      amount: this.fb.control(0, [Validators.required]),
     });
 
     row.get('price')?.valueChanges.subscribe(() => this.updateAmount(row));

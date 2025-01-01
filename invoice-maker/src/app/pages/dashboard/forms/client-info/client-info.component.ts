@@ -30,7 +30,7 @@ export class ClientInfoComponent {
       surname: ['', [Validators.required, Validators.minLength(2)]],
       number: [
         '',
-        [Validators.required, Validators.pattern(/^\+?[0-9]{10,15}$/)],
+        [Validators.required, Validators.pattern(/^\+?[0-9]{10}$/)],
       ],
       email: ['', [Validators.required, Validators.email]],
     });

@@ -54,6 +54,7 @@
     <div class="flex w-full justify-center items-center mt-8 mb-8">
       <div class="flex w-1/4">
         <p-button
+          [disabled]="isFormInvalid()"
           (onClick)="onSubmit()"
           label="Generate"
           class="w-full text-lg font-semibold"

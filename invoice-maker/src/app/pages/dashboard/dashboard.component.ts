@@ -4,6 +4,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { OwnerInfoComponent } from '@pages/dashboard/forms/owner-info/owner-info.component';
 import { ClientInfoComponent } from '@pages/dashboard/forms//client-info/client-info.component';
 import { ProductsComponent } from '@pages/dashboard/forms//products/products.component';
+import { BankingDetailsComponent } from '@pages/dashboard/forms/banking-details/banking-details.component';
 import { DatePickerModule } from 'primeng/datepicker';
 import { FileUploadModule } from 'primeng/fileupload';
 import {
@@ -11,10 +12,10 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { InvoiceService } from '@services/pdf-service.service';
 import { DatePipe } from '@angular/common';
-import { BankingDetailsComponent } from './forms/banking-details/banking-details.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -56,7 +57,7 @@ export class DashboardComponent {
 
   createForm() {
     this.parentForm = this.fb.group({
-      dateCreated: new FormControl(),
+      dateCreated: new FormControl(Validators.required),
       logo: new FormControl(''),
     });
   }
@@ -88,8 +89,6 @@ export class DashboardComponent {
     };
 
     this.invoiceService.generateInvoice(finalFormValue);
-
-    console.log('Final Form Data:', finalFormValue);
   }
 
   onLogoSelect(event: any): void {
@@ -104,5 +103,15 @@ export class DashboardComponent {
     };
 
     reader.readAsDataURL(file);
+  }
+
+  isFormInvalid(): boolean {
+    return (
+      this.parentForm.invalid ||
+      this.ownerInfoComponent?.ownerForm.invalid ||
+      this.clientInfoComponent?.clientForm.invalid ||
+      this.bankingDetailsComponent?.bankDetailsForm.invalid ||
+      this.productsComponent?.form.invalid
+    );
   }
 }

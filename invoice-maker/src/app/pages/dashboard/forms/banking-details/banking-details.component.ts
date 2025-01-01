@@ -59,12 +59,12 @@ export class BankingDetailsComponent {
       accountType: ['', [Validators.required]],
       accountNumber: [
         '',
-        [Validators.required, Validators.pattern(/^\+?[0-9]{10,15}$/)],
+        [Validators.required, Validators.pattern(/^\+?[0-9]{7,11}$/)],
       ],
 
       branchCode: [
         '',
-        [Validators.required, Validators.pattern(/^\+?[0-9]{10,15}$/)],
+        [Validators.required, Validators.pattern(/^\+?[0-9]{5}$/)],
       ],
     });
   }
