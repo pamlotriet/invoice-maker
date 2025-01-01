@@ -1,27 +1,42 @@
-# InvoiceMaker
+# Invoice Maker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+Invoice Maker is a streamlined Angular-based web application designed to simplify invoice generation for small businesses, freelancers, and personal use. It allows users to input client and owner details, add products or services, calculate totals, and generate professional PDF invoices with ease.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Dynamic Invoice Creation**:
+  - Add, update, and remove products/services.
+  - Auto-calculate total amounts based on quantity and price.
+- **Professional PDF Generation**:
+  - Download invoices with a unique invoice number, issue date, client and owner details, and product breakdown.
+  - Include a company logo (PNG, JPEG, or JPG).
+- **Watchlist Integration**:
+  - Save watched invoices for easy tracking and access.
+- **Banking Details**:
+  - Add and display owner banking information on the PDF for seamless payment handling.
+- **Responsive Design**:
+  - Optimized for desktops, tablets, and mobile devices.
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Frontend**: Angular with PrimeNG for UI components.
+- **PDF Generation**: jsPDF and jsPDF-AutoTable.
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/invoice-maker.git
+   ```
+2. Navigate to the project directory
+   ```bash
+   cd invoice-maker
+   ```
+3. Install dependencies
+   ```bash
+   npm install
+   ```
+4. Run the application
+   ```bash
+   ng serve
+   ```
